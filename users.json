@@ -1,0 +1,8 @@
+{
+  "krisna": {
+    "password_hash": "pbkdf2:sha256:1000000$BmykODXUWd6x2UtJ$7453745ce25278cccfe05fd07cd56621d05c1e4d8533725470a763e3ba3bf2f3"
+  },
+  "leon": {
+    "password_hash": "pbkdf2:sha256:1000000$sCxLaGPZd4y8ytH3$15f1eec55581fdc024a37c39e1bfe2236f5bec21e3d86de2711e756716356745"
+  }
+}

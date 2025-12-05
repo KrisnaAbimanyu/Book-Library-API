@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "owner": null
+  },
+  {
+    "id": 2,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "owner": null
+  },
+  {
+    "id": 3,
+    "title": "My New Book",
+    "author": "Krisna",
+    "owner": "krisna"
+  },
+  {
+    "id": 4,
+    "title": "Leon was here",
+    "author": "Leon",
+    "owner": "leon"
+  }
+]
