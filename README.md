@@ -1,67 +1,159 @@
-# Book Library API
-System Integration — Assignment 4
-Author: Krisna Abimanyu (IS 2022)
+Book Library API — System Integration Assignment 4
 
-A secure and lightweight RESTful API built using Flask, featuring JWT authentication, owner-based authorization, and persistent JSON storage.
+By Krisna Abimanyu — IS 2022
 
-# METHOD OVERVIEW
-1. Authentication Layer (register → login → token)
-2. Authorization Rules (only owners can modify/delete)
-3. Persistent Storage (users.json & books.json)
-4. REST API Structure (/api/books)
+A secure RESTful API built using Flask, featuring User Authentication, JWT-based Authorization, and Persistent JSON Storage.
+Users must register and log in to obtain a JWT token before they can create, update, or delete books.
 
-# DEPENDENCIES
-Flask
-Flask-JWT-Extended
-Werkzeug
+This API provides:
 
-## Install:
-pip install Flask Flask-JWT-Extended Werkzeug
+User Registration & Login
 
-# SETUP
-git clone <repo_url>
-cd <repo_folder>
-python app.py
+JWT Access Token generation
 
-# BASE URL
-http://127.0.0.1:8000
+Protected routes requiring authentication
 
-# AUTHENTICATION ENDPOINTS
+Owner-based Authorization
+
+Persistent storage using users.json and books.json
+
+-------------------------------------------------------
+FEATURES
+-------------------------------------------------------
+🔐 Authentication
+
+Register new users
+
+Login using username + password
+
+Receive JWT token for protected endpoints
+
+📚 Books Management
+
+Retrieve all books (public)
+
+Retrieve a book by ID (public)
+
+Add a new book (auth required)
+
+Update a book (owner only)
+
+Delete a book (owner only)
+
+💾 Persistent Storage
+
+users.json → stores usernames + hashed passwords
+
+books.json → stores all books
+
+Data remains saved even after app restart
+
+-------------------------------------------------------
+API ENDPOINTS
+-------------------------------------------------------
+🔐 AUTHENTICATION
 POST /register
+
+Register a new user
+Body:
+
+{ "username": "krisna", "password": "1234" }
+
 POST /login
 
-# BOOK ENDPOINTS
+Login and receive JWT token
+Body:
+
+{ "username": "krisna", "password": "1234" }
+
+
+Response Example:
+
+{ "access_token": "<JWT_TOKEN>" }
+
+🔸 All Protected Endpoints Require:
+Authorization: Bearer <JWT_TOKEN>
+
+📚 BOOKS API
 GET /api/books
+
+Retrieve all books (public)
+
 GET /api/books/<id>
-POST /api/books   (JWT required)
-PUT /api/books/<id>   (Owner only)
-DELETE /api/books/<id>   (Owner only)
 
-# CURL EXAMPLES
-Register:
-curl -X POST -H "Content-Type: application/json" -d "{"username":"krisna","password":"1234"}" http://127.0.0.1:8000/register
+Retrieve a book by ID (public)
 
-# Login:
-curl -X POST -H "Content-Type: application/json" -d "{"username":"krisna","password":"1234"}" http://127.0.0.1:8000/login
+POST /api/books
 
-# Get all books:
+Add a new book (authentication required)
+
+Headers:
+
+Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+
+
+Body:
+
+{ "title": "New Book", "author": "Krisna" }
+
+PUT /api/books/<id>
+
+Update book info (owner only)
+
+DELETE /api/books/<id>
+
+Delete a book (owner only)
+
+-------------------------------------------------------
+SETUP INSTRUCTIONS
+-------------------------------------------------------
+1. Clone the repository
+git clone <your_repo_url>
+cd <repo_folder>
+
+2. Install dependencies
+pip install Flask Flask-JWT-Extended Werkzeug
+
+
+Or using requirements.txt:
+
+pip install -r requirements.txt
+
+3. Run the app
+python app.py
+
+4. Server URL
+http://127.0.0.1:8000
+
+-------------------------------------------------------
+EXAMPLE API CALLS (cURL)
+-------------------------------------------------------
+✔ Register a user
+curl -X POST -H "Content-Type: application/json" \
+-d "{\"username\": \"krisna\", \"password\": \"1234\"}" \
+http://127.0.0.1:8000/register
+
+✔ Login and receive token
+curl -X POST -H "Content-Type: application/json" \
+-d "{\"username\": \"krisna\", \"password\": \"1234\"}" \
+http://127.0.0.1:8000/login
+
+✔ Get all books
 curl http://127.0.0.1:8000/api/books
 
-# Add book:
-curl -X POST -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{"title":"Atomic Habits","author":"James Clear"}" http://127.0.0.1:8000/api/books
+✔ Add a new book
+curl -X POST -H "Authorization: Bearer <TOKEN>" \
+-H "Content-Type: application/json" \
+-d "{\"title\": \"Atomic Habits\", \"author\": \"James Clear\"}" \
+http://127.0.0.1:8000/api/books
 
-# Update book:
-curl -X PUT -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{"title":"Updated Version"}" http://127.0.0.1:8000/api/books/3
+-------------------------------------------------------
+LIMITATIONS
+-------------------------------------------------------
 
-# Delete book:
-curl -X DELETE -H "Authorization: Bearer <TOKEN>" http://127.0.0.1:8000/api/books/3
+Data stored in JSON files (not a real database)
 
-# TROUBLESHOOTING
-401 → Missing or expired token
-403 → Not the owner of the book
-JSON not updating → Ensure save_books() runs
+JWT secret key not secure for production
 
-# LIMITATIONS
-Not a production database
-Simple JWT setup
-No refresh tokens
+Intended for educational use only
