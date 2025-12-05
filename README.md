@@ -79,19 +79,27 @@ GET /api/books
 
 Retrieve all books (public)
 
+<img width="1279" height="792" alt="image" src="https://github.com/user-attachments/assets/04bde152-cf8f-4f4d-843c-09049e4e58d4" />
+
 GET /api/books/<id>
 
 Retrieve a book by ID (public)
 
+<img width="846" height="560" alt="image" src="https://github.com/user-attachments/assets/6580f40a-7550-4dc6-bdd2-d7d50de2da08" />
+
+
 POST /api/books
 
 Add a new book (authentication required)
+
 
 Headers:
 
 Authorization: Bearer <JWT_TOKEN>
 Content-Type: application/json
 
+### Put token here if using postman
+<img width="858" height="456" alt="image" src="https://github.com/user-attachments/assets/f94f950b-7804-4fbf-b403-bca3976825ab" />
 
 Body:
 
