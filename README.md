@@ -114,7 +114,3 @@ LIMITATIONS
 - Data is stored in JSON files (not a real database)
 - JWT secret key is not production secure
 - Not suitable for production without modifications
-
--------------------------------------------------------
-END OF README
--------------------------------------------------------
