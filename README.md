@@ -10,7 +10,7 @@ A secure and lightweight RESTful API built using Flask, featuring JWT authentica
 3. Persistent Storage (users.json & books.json)
 4. REST API Structure (/api/books)
 
-#DEPENDENCIES
+# DEPENDENCIES
 Flask
 Flask-JWT-Extended
 Werkzeug
